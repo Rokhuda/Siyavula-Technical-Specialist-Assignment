@@ -1,6 +1,6 @@
 # Check identifying information (names, locations) has been removed from text
 '''
-misssing colon
+misssing colon after function definition
 is_anonymized - function mispelling
 the arrangement of if statement would cause  the following string Sizwe must have made a mistake. return true nstead of false
 It was returning true because after checking if Sizwe is in the name list annonymus becomes false and because that value is not returned, the function 

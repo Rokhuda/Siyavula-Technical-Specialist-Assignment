@@ -20,9 +20,6 @@ def calculate_root(a,b,c):
 
 
 
-
-
-
 # 2.1
 
 def generate_quadratic_equation():
@@ -32,7 +29,6 @@ def generate_quadratic_equation():
     a=gen_a()
     b=gen_b()
     c=gen_c()
-    # eq = f"{gen_a()} {gen_b()} {gen_c()} = 0"
     eq = f"{a}x^2 + {b}x + {c} = 0"
     return eq
 
@@ -49,6 +45,7 @@ def print_ten_quadratic_equation():
 
 
 print_ten_quadratic_equation()
+
 
 # 2.2
 def generate_real_root_quadratic_equation():
@@ -109,7 +106,7 @@ def generate_real_root_quadratic_equation_with_solution():
         return f'The quadratic equation : {new_line} {eq} {new_line}Has a Descriminent of : {new_line} {descriminant} {new_line}Has two real roots : {new_line} x = {root1} {new_line} x = {root2}'
     else:
         # if the descriminant is less that 0 -> not a real root, call the function again an regenerate new a,b,c values
-        return generate_quadratic_equation()
+        return generate_real_root_quadratic_equation_with_solution()
 
 
 def print_generate_real_root_quadratic_equation_with_solution():
