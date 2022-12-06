@@ -13,7 +13,7 @@ def gen_c():
     return c
 
 
-def generate_quadratic_equation():
+def generate_real_root_quadratic_equation():
     """
     a*x^2+b*x+c = 0
     """
@@ -25,12 +25,18 @@ def generate_quadratic_equation():
         return f"{a}x^2 + {b}x + {c} = 0"
     else:
         # if the descriminant is less that 0 -> not a real root, call the function again an regenerate new a,b,c values
-        return generate_quadratic_equation()
+        return generate_real_root_quadratic_equation()
 
-  
-    
-for i in range(1,11):
-    print(f'{i}: {generate_quadratic_equation()}')
+def set_of_ten_random_real_root_quadratic_equations():
+    new_set = {i: generate_real_root_quadratic_equation() for i in range(1,11)}
+    return new_set
 
 
-generate_quadratic_equation()
+def print_ten_random_real_root_quadratic_equations():
+
+    for i, (key, value) in enumerate(set_of_ten_random_real_root_quadratic_equations().items()):
+
+        print(f'{key}: {value}')
+
+
+print_ten_random_real_root_quadratic_equations()
