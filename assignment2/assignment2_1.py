@@ -34,10 +34,10 @@ def gen_c():
     if c == 0:
         result = ''
     elif c > 0 :
-        result = f'+ {c}'
+        result = f' + {c}'
 
     else:
-        result = f'{c}'
+        result = f' {c}'
     return  result
 
 
@@ -46,15 +46,24 @@ def generate_quadratic_equation():
     '''
     a*x^2+b*x+c = 0
     '''
-    
-    eq = f"{gen_a()}{gen_b()}{gen_c()} = 0"
+ 
+    eq = f"{gen_a()} {gen_b()} {gen_c()} = 0"
 
     return eq
 
+
+def set_of_ten_quadratic_equation():
+    new_set = {i: generate_quadratic_equation() for i in range(1,11)}
+    return new_set
+
+
+def print_ten_generate_quadratic_equation():
+
+    for i, (key, value) in enumerate(set_of_ten_quadratic_equation().items()):
+        print(f'{key}: {value}')
+
+
 print(f'Quadratic Equations')
-for i in range(1,11):
-    print(f'{i}: {generate_quadratic_equation()}')
+print_ten_generate_quadratic_equation()
+   
 
-        
-
-generate_quadratic_equation()
