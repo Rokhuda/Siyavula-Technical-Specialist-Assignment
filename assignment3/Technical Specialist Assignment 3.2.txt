@@ -1,0 +1,15 @@
+1.
+- The inputs have not been separated with a semi-colon as required
+- The inputs have not been rounded to two decimal places as required
+- The decimal separator used may be different from the one in the solution (decimal separator to be used has not been defined/instructed)
+
+2.
+- The input includes mathematical operators
+- The input includes consecutive mathematical operators
+- The decimal separator used may be different from the one in the solution (decimal separator to be used has not been defined/instructed)
+
+3.
+- Use the round function to round any inputs with more decimals than required
+- Perform the mathematical operators included in the input and compare the result against the solution
+- Convert the string equation to a number with up to two decimal places
+- Accept inputs with different symbols as decimal separators

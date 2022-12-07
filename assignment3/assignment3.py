@@ -10,164 +10,144 @@ from sympy.abc import x
 '''
 
 def gen_a():
-    a = random.choice([random.randint(-10, -1),random.randint(1, 10)])
-    return f'{a}x^2'
+    a = random.choice([random.randint(-10, -1), random.randint(1, 10)])
+    return a
 
 def gen_b():
     b = random.randint(-10, 10)
-    if b == 0:
-        # result = '0'
-        result = 0
-
-    elif b > 0 :
-        # result = f'+ {b}x'
-        result = b
-
-    else:
-        # result = f'{b}x'
-        result = b
-
-    return  result
+    return b
 
 def gen_c():
     c = random.randint(-10, 10)
-    if c == 0:
-        # result = '0'
-        result = 0
-
-    elif c > 0 :
-        # result = f'+ {c}'
-        result = c
+    return c
 
 
-    else:
-        # result = f'{c}'
-        result = c
+def generate_real_root_quadratic_equation():
 
-    return  result
-
-
-        
-
-# Function checks if the generated constants produce a real root quadratic equation by returning a boolean
-# def is_real_roots(a, b, c) -> boolean:
-#     if type(a) != int and type(b) != int and type(c) != int:
-#         return False
-#     else:
-#         if a == 0:
-#             return False
-#         descriminant = b**2 - 4 * a * c
-
-#         if descriminant > 0:
-#             return True
-#         elif descriminant == 0:
-#             return True
-#         else:
-#             return False
-
-
-# rename funtion + root solution
-# def randomly_arranged_equaton():
-    
-#     eq1 = f"{a}{b}{c} = 0"
-#     eq2 = f"{a}{b} = {c}"
-#     eq3 = f"{b} = {c}{a}"
-#     eq4 = f"{b}{a} = {c}"
-#     eq5 = f"{b}{c} = {a}"
-
-#     eq_list = [eq1,eq2,eq3,eq4,eq5]
-#     # choice will choose a random item in the sequence
-#     return random.choice(eq_list)
-
-
-
-def generate_quadratic_equation():
-    """
-    a*x^2+b*x+c = 0
-    """
     a=gen_a()
     b=gen_b()
     c=gen_c()
 
     descriminant = b * b - 4 * a * c
     new_line = '\n'
+    standard_eq = f"{a}x^2 + {b}x + {c} = 0"
+    eq2 = f"{a}x^2 {b}x = {c}"
+    eq3 = f"{b}x = {c}{a}x^2"
+    eq4 = f"{b}{a}x^2 = {c}"
+    eq5 = f"{b}{c} = {a}x^2 "
 
-   
+    eq_list = [standard_eq,eq2,eq3,eq4,eq5]
+    # choice will choose a random item in the sequence
+    quad_eq = random.choice(eq_list)
 
-    eq = randomly_arranged_equaton()
-
-
-    if descriminant == 0:
-        root = ((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        return f'The quadratic equation : {eq} {new_line} Has a Descriminent of {descriminant} {new_line}Has one real root: {root}'
-      
-    if descriminant > 0:
-        eq = f"{a}x^2 + {b}x + {c} = 0"
-        root1 = ((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        root2 = ((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        return f'The quadratic equation : {eq} {new_line} Has a Descriminent of {descriminant} {new_line}Has two real roots: {new_line} {root1} {new_line} {root2}'
+    if descriminant >= 0:
+         return quad_eq
     else:
-        # if the descriminant is less that 0 -> not a real root, call the function again an regenerate new a,b,c values
-        return generate_quadratic_equation()
-
-  
-# print("WARNING: If a equals 0, a divide by 0 error will occur!")
-# print()   
-# for i in range(1,11):
-#     print(f'{i}: {generate_quadratic_equation()}')
+        return generate_real_root_quadratic_equation()
 
 
 
-print(generate_quadratic_equation())
+# sting1
+def solve_the_following_quadratic_equation():
+    quad_eq = generate_real_root_quadratic_equation()
+    return quad_eq
 
-
-
-# randominze quadratic equation arrangement
-
-
-
-
-# def input_your_answers(root1,seperator,root2):
-#     ''' 1;1'''
-#     root1 = int(input('root1'))
-#     root2 = int(input('root2'))
-#     seperator = input(';')
-#     if type(root1) != int and type(root1) and seperator!= ';':
-#         raise ValueError('Enter digits seperated by a semicolon (;)')
-#     else:
-#         # if 
-#         'check if generated quadratic match solution else try again'
-
-
-# def solve_the_equestion_2x_value():
-#     ''' x = 1 or x = 3'''
-#     print(f'x ={root1} or x ={root2}')
-
-
-# def solve_the_equestion_1x_value(a,b,c):
-
-#     '''
-#     x = val1 +- square_root(val2) / val3
-#     '''
-#     val1 = (-b)
-#     val2 = b*b - 4*a*c
-#     val3 = 2*a
+# string2
+# factorise
+def remove_the_fractions_from_equation():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    eq = solve_the_following_quadratic_equation()
     
-#     print(f'({val1}) +- ((math.sqrt({val2}))/({val3}))')
+
+    # def _factorise():
+    '''
+    If the coeffiecient of a is greater than 0 we use grouping method to factorise
+    '''
+    if a == 1:
+        # sum product
+        return eq
+    
+        # grouping
+    eq = f'{a}x(x+{c}) - 1(x + {c}) =0'
+    return eq
+        
 
 
-# def arrange_quad_eq_in_standard_form():
-#     print('randomly arranged quad eq')
-#     print('quad eq')
+# string3
+def arrange_equation_in_standard_form():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    standard_eq = f"{a}x^2 + {b}x + {c} = 0"
+    eq = generate_real_root_quadratic_equation()
+
+    new_line = '\n'
+    if eq != standard_eq:
+        return f'{eq}{new_line}{standard_eq}'
+    return standard_eq
+
+# string4
+
+def reduce_the_equation():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    
+    '''
+    x = val1 +- square_root(val2) / val3
+    '''
+    val1 = (-b)
+    val2 = b*b - 4*a*c
+    val3 = 2*a
+    
+    return f'({val1}) +- ((math.sqrt({val2}))/({val3}))'
 
 
-# def function_remove_fractions():
+# string5
+def print_roots():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    root_1 = int(((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    root_2 =  int(((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    return f'{root_1} ; {root_2}'
 
-#     pass
 
 
-# def quad_eq_to_solve():
-#     pass
+# string6
+def input_your_answers():
+    ''' 1;1'''
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    root_1 = int(((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    root_2 =  int(((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+
+    root1 = int(input('Input root1 : '))
+    seperator = input('seperator')
+
+    root2 = int(input('Input root2 : '))
+
+    your_answer = f'{root1}{seperator}{root1}'
+    
+
+    if type(root1) == int and type(root2) == int and seperator == ';':
+        if root1 == root_1 and root2 == root_2: 
+            return f'{print_roots()}'
+            
+        return f'Try again : {your_answer}'
+    else:
+        raise ValueError('Enter digits seperated by s semicolon (;)') 
+    
+    return f'{root_1}{seperator}{root_1}'
 
 
 
+print(generate_real_root_quadratic_equation())
+print(remove_the_fractions_from_equation())
+print(arrange_equation_in_standard_form())
+print(reduce_the_equation())
+print(print_roots())
+print(input_your_answers())
