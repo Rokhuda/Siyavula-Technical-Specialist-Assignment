@@ -22,7 +22,7 @@ def gen_c():
     return c
 
 
-def generate_quadratic_equation():
+def generate_real_root_quadratic_equation():
 
     a=gen_a()
     b=gen_b()
@@ -40,54 +40,60 @@ def generate_quadratic_equation():
     # choice will choose a random item in the sequence
     quad_eq = random.choice(eq_list)
 
-    if descriminant == 0:
-        root = ((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        return f'The quadratic equation : {eq} {new_line} Has a Descriminent of {descriminant} {new_line}Has one real root: {root}'
-      
-    if descriminant > 0:
-        eq = f"{a}x^2 + {b}x + {c} = 0"
-        root1 = ((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        root2 = ((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a)
-        return f'The quadratic equation : {eq} {new_line} Has a Descriminent of {descriminant} {new_line}Has two real roots: {new_line} {root1} {new_line} {root2}'
+    if descriminant >= 0:
+         return quad_eq
     else:
-        # if the descriminant is less that 0 -> not a real root, call the function again an regenerate new a,b,c values
-        return generate_quadratic_equation()
-
-
+        return generate_real_root_quadratic_equation()
 
 
 
 # sting1
 def solve_the_following_quadratic_equation():
+    quad_eq = generate_real_root_quadratic_equation()
     return quad_eq
 
 # string2
+# factorise
 def remove_the_fractions_from_equation():
-    generate_quadratic_equation()
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    eq = solve_the_following_quadratic_equation()
+    
 
-    factorise = Factor().FactorQuad(a, b, c)
-
-    if factorise == False:
-        return 'equation does not need to be factorised'
-    else:
-        return factorise
-
+    # def _factorise():
+    '''
+    If the coeffiecient of a is greater than 0 we use grouping method to factorise
+    '''
+    if a == 1:
+        # sum product
+        return eq
+    
+        # grouping
+    eq = f'{a}x(x+{c}) - 1(x + {c}) =0'
+    return eq
+        
 
 
 # string3
 def arrange_equation_in_standard_form():
-    eq = solve_the_following_quadratic_equation()
-    def _rearranged():
-        pass
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    standard_eq = f"{a}x^2 + {b}x + {c} = 0"
+    eq = generate_real_root_quadratic_equation()
 
-    if eq == standard_eq:
-        return eq
-    else:
-        return _rearranged()
+    new_line = '\n'
+    if eq != standard_eq:
+        return f'{eq}{new_line}{standard_eq}'
+    return standard_eq
 
 # string4
 
 def reduce_the_equation():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
     
     '''
     x = val1 +- square_root(val2) / val3
@@ -100,24 +106,46 @@ def reduce_the_equation():
 
 
 # string5
-def print_roots(a,b,c):
+def print_roots():
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    root_1 = int(((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    root_2 =  int(((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    return f'{root_1} ; {root_2}'
 
-    return ((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a)
+
 
 # string6
-def input_your_answers(root1,seperator,root2):
+def input_your_answers():
     ''' 1;1'''
-    root1 = int(input('root1'))
-    root2 = int(input('root2'))
-    seperator = input(';')
-    if type(root1) != int and type(root1) and seperator!= ';':
-        return f'Enter digits seperated by a semicolon (;){input_your_answers(root1, seperator, root2)}'
+    a=gen_a()
+    b=gen_b()
+    c=gen_c()
+    root_1 = int(((-b) + ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+    root_2 =  int(((-b) - ((math.sqrt((b*b) - 4*a*c))))/(2*a))
+
+    root1 = int(input('Input root1 : '))
+    seperator = input('seperator')
+
+    root2 = int(input('Input root2 : '))
+
+    your_answer = f'{root1}{seperator}{root1}'
+    
+
+    if type(root1) == int and type(root2) == int and seperator == ';':
+        if root1 == root_1 and root2 == root_2: 
+            return f'{print_roots()}'
+            
+        return f'Try again : {your_answer}'
     else:
-        return 'Nice'
+        raise ValueError('Enter digits seperated by s semicolon (;)') 
+    
+    return f'{root_1}{seperator}{root_1}'
 
 
 
-print(generate_quadratic_equation())
+print(generate_real_root_quadratic_equation())
 print(remove_the_fractions_from_equation())
 print(arrange_equation_in_standard_form())
 print(reduce_the_equation())
